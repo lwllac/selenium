@@ -319,21 +319,15 @@ namespace OpenQA.Selenium
             {
                 throw new ArgumentNullException(nameof(toSerialize), "object to serialize must not be null");
             }
-
-            By asBy = toSerialize as By;
-            if (asBy != null)
+            if (toSerialize is By asBy)
             {
                 return asBy;
             }
-
-            IWebElement element = toSerialize as IWebElement;
-            if (element != null)
+            if (toSerialize is IWebElement element)
             {
                 return element;
             }
-
-            IWrapsElement wrapper = toSerialize as IWrapsElement;
-            if (wrapper != null)
+            if (toSerialize is IWrapsElement wrapper)
             {
                 return wrapper.WrappedElement;
             }
@@ -347,23 +341,17 @@ namespace OpenQA.Selenium
             {
                 throw new ArgumentNullException(nameof(toSerialize), "object to serialize must not be null");
             }
-
-            By asBy = toSerialize as By;
-            if (asBy != null)
+            if (toSerialize is By asBy)
             {
                 Dictionary<string, object> serializedBy = new Dictionary<string, object>();
                 serializedBy[asBy.Mechanism] = asBy.Criteria;
                 return serializedBy;
             }
-
-            IWebElement element = toSerialize as IWebElement;
-            if (element != null)
+            if (toSerialize is IWebElement element)
             {
                 return element;
             }
-
-            IWrapsElement wrapper = toSerialize as IWrapsElement;
-            if (wrapper != null)
+            if (toSerialize is IWrapsElement wrapper)
             {
                 return wrapper.WrappedElement;
             }
@@ -378,9 +366,7 @@ namespace OpenQA.Selenium
             {
                 return executor;
             }
-
-            IWrapsDriver current = context as IWrapsDriver;
-            while (current != null)
+            while (context is IWrapsDriver current)
             {
                 IWebDriver driver = current.WrappedDriver;
                 executor = driver as IJavaScriptExecutor;

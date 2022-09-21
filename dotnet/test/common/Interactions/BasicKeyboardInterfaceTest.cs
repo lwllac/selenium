@@ -13,9 +13,7 @@ namespace OpenQA.Selenium.Interactions
         [SetUp]
         public void Setup()
         {
-            //new Actions(driver).SendKeys(Keys.Null).Perform();
-            IActionExecutor actionExecutor = driver as IActionExecutor;
-            if (actionExecutor != null)
+            if (driver is IActionExecutor actionExecutor)
             {
                 actionExecutor.ResetInputState();
             }
@@ -24,9 +22,7 @@ namespace OpenQA.Selenium.Interactions
         [TearDown]
         public void ReleaseModifierKeys()
         {
-            //new Actions(driver).SendKeys(Keys.Null).Perform();
-            IActionExecutor actionExecutor = driver as IActionExecutor;
-            if (actionExecutor != null)
+            if (driver is IActionExecutor actionExecutor)
             {
                 actionExecutor.ResetInputState();
             }
@@ -202,14 +198,7 @@ namespace OpenQA.Selenium.Interactions
 
             if (!TestUtilities.IsInternetExplorer(driver))
             {
-                // When using drivers other than the IE, the click in
-                // the below action sequence may fall inside the double-
-                // click threshold (the IE driver has guards to prevent
-                // inadvertent double-clicks with multiple actions calls),
-                // so we call the "release actions" end point before
-                // doing the second action.
-                IActionExecutor executor = driver as IActionExecutor;
-                if (executor != null)
+                if (driver is IActionExecutor executor)
                 {
                     executor.ResetInputState();
                 }
@@ -245,14 +234,7 @@ namespace OpenQA.Selenium.Interactions
 
             if (!TestUtilities.IsInternetExplorer(driver))
             {
-                // When using drivers other than the IE, the click in
-                // the below action sequence may fall inside the double-
-                // click threshold (the IE driver has guards to prevent
-                // inadvertent double-clicks with multiple actions calls),
-                // so we call the "release actions" end point before
-                // doing the second action.
-                IActionExecutor executor = driver as IActionExecutor;
-                if (executor != null)
+                if (driver is IActionExecutor executor)
                 {
                     executor.ResetInputState();
                 }

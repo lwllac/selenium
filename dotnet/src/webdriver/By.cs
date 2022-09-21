@@ -367,10 +367,9 @@ namespace OpenQA.Selenium
         /// <see langword="false"/>.</returns>
         public override bool Equals(object obj)
         {
-            var other = obj as By;
 
             // TODO(dawagner): This isn't ideal
-            return other != null && this.description.Equals(other.description);
+            return obj is By other&& this.description.Equals(other.description);
         }
 
         /// <summary>

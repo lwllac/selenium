@@ -1,4 +1,4 @@
-﻿// <copyright file="WebDriverExtensions.cs" company="WebDriver Committers">
+// <copyright file="WebDriverExtensions.cs" company="WebDriver Committers">
 // Licensed to the Software Freedom Conservancy (SFC) under one
 // or more contributor license agreements. See the NOTICE file
 // distributed with this work for additional information
@@ -129,12 +129,7 @@ namespace OpenQA.Selenium.Support.Extensions
             T convertedDriver = driver as T;
             if (convertedDriver == null)
             {
-                // If the driver doesn't directly implement the desired interface, but does
-                // implement IWrapsDriver, walk up the hierarchy of wrapped drivers until
-                // either we find a class that does implement the desired interface, or is
-                // no longer wrapping a driver.
-                IWrapsDriver driverWrapper = driver as IWrapsDriver;
-                while (convertedDriver == null && driverWrapper != null)
+                while (convertedDriver == null && driver is IWrapsDriver driverWrapper)
                 {
                     convertedDriver = driverWrapper.WrappedDriver as T;
                     driverWrapper = driverWrapper.WrappedDriver as IWrapsDriver;

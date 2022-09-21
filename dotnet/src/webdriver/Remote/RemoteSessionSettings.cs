@@ -308,13 +308,12 @@ namespace OpenQA.Selenium
         private bool IsJsonSerializable(object arg)
         {
             IEnumerable argAsEnumerable = arg as IEnumerable;
-            IDictionary argAsDictionary = arg as IDictionary;
 
             if (arg is string || arg is float || arg is double || arg is int || arg is long || arg is bool || arg == null)
             {
                 return true;
             }
-            else if (argAsDictionary != null)
+            else if (arg is IDictionary argAsDictionary)
             {
                 foreach (object key in argAsDictionary.Keys)
                 {

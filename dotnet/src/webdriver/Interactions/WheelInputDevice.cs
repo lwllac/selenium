@@ -211,8 +211,7 @@ namespace OpenQA.Selenium.Interactions
                 IWebDriverObjectReference elementReference = this.target as IWebDriverObjectReference;
                 if (elementReference == null)
                 {
-                    IWrapsElement elementWrapper = this.target as IWrapsElement;
-                    if (elementWrapper != null)
+                    if (this.target is IWrapsElement elementWrapper)
                     {
                         elementReference = elementWrapper.WrappedElement as IWebDriverObjectReference;
                     }

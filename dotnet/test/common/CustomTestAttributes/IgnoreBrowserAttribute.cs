@@ -58,8 +58,7 @@ namespace OpenQA.Selenium
 
                 foreach (Attribute attr in ignoreAttributes)
                 {
-                    IgnoreBrowserAttribute browserToIgnoreAttr = attr as IgnoreBrowserAttribute;
-                    if (browserToIgnoreAttr != null && IgnoreTestForBrowser(browserToIgnoreAttr.Value))
+                    if (attr is IgnoreBrowserAttribute browserToIgnoreAttr&& IgnoreTestForBrowser(browserToIgnoreAttr.Value))
                     {
                         string ignoreReason = "Ignoring browser " + EnvironmentManager.Instance.Browser.ToString() + ".";
                         if (!string.IsNullOrEmpty(browserToIgnoreAttr.Reason))
