@@ -94,8 +94,7 @@ namespace OpenQA.Selenium
             IWebDriverObjectReference elementReference = frameElement as IWebDriverObjectReference;
             if (elementReference == null)
             {
-                IWrapsElement elementWrapper = frameElement as IWrapsElement;
-                if (elementWrapper != null)
+                if (frameElement is IWrapsElement elementWrapper)
                 {
                     elementReference = elementWrapper.WrappedElement as IWebDriverObjectReference;
                 }

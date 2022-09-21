@@ -13,9 +13,7 @@ namespace OpenQA.Selenium.Interactions
         [SetUp]
         public void Setup()
         {
-            //new Actions(driver).SendKeys(Keys.Null).Perform();
-            IActionExecutor actionExecutor = driver as IActionExecutor;
-            if (actionExecutor != null)
+            if (driver is IActionExecutor actionExecutor)
             {
                 actionExecutor.ResetInputState();
             }
@@ -24,9 +22,7 @@ namespace OpenQA.Selenium.Interactions
         [TearDown]
         public void ReleaseModifierKeys()
         {
-            //new Actions(driver).SendKeys(Keys.Null).Perform();
-            IActionExecutor actionExecutor = driver as IActionExecutor;
-            if (actionExecutor != null)
+            if (driver is IActionExecutor actionExecutor)
             {
                 actionExecutor.ResetInputState();
             }
@@ -122,7 +118,7 @@ namespace OpenQA.Selenium.Interactions
             IAction releaseShift = new Actions(driver).KeyUp(Keys.Shift).Build();
             releaseShift.Perform();
 
-            AssertThatFormEventsFiredAreExactly("focus keydown keydown keypress keyup keydown keypress keyup keyup"); 
+            AssertThatFormEventsFiredAreExactly("focus keydown keydown keypress keyup keydown keypress keyup keyup");
 
             Assert.AreEqual("AB", keysEventInput.GetAttribute("value"));
         }
@@ -139,7 +135,7 @@ namespace OpenQA.Selenium.Interactions
 
             AssertThatBodyEventsFiredAreExactly("keypress keypress");
             IWebElement formLoggingElement = driver.FindElement(By.Id("result"));
-            AssertThatFormEventsFiredAreExactly(string.Empty); 
+            AssertThatFormEventsFiredAreExactly(string.Empty);
         }
 
         [Test]
@@ -169,7 +165,7 @@ namespace OpenQA.Selenium.Interactions
 
         [Test]
         public void CanGenerateKeyboardShortcuts()
-        { 
+        {
             driver.Url = EnvironmentManager.Instance.UrlBuilder.WhereIs("keyboard_shortcut.html");
 
             IWebElement body = driver.FindElement(By.XPath("//body"));
@@ -202,14 +198,7 @@ namespace OpenQA.Selenium.Interactions
 
             if (!TestUtilities.IsInternetExplorer(driver))
             {
-                // When using drivers other than the IE, the click in
-                // the below action sequence may fall inside the double-
-                // click threshold (the IE driver has guards to prevent
-                // inadvertent double-clicks with multiple actions calls),
-                // so we call the "release actions" end point before
-                // doing the second action.
-                IActionExecutor executor = driver as IActionExecutor;
-                if (executor != null)
+                if (driver is IActionExecutor executor)
                 {
                     executor.ResetInputState();
                 }
@@ -245,14 +234,7 @@ namespace OpenQA.Selenium.Interactions
 
             if (!TestUtilities.IsInternetExplorer(driver))
             {
-                // When using drivers other than the IE, the click in
-                // the below action sequence may fall inside the double-
-                // click threshold (the IE driver has guards to prevent
-                // inadvertent double-clicks with multiple actions calls),
-                // so we call the "release actions" end point before
-                // doing the second action.
-                IActionExecutor executor = driver as IActionExecutor;
-                if (executor != null)
+                if (driver is IActionExecutor executor)
                 {
                     executor.ResetInputState();
                 }
@@ -319,7 +301,7 @@ namespace OpenQA.Selenium.Interactions
             IAction releaseShift = new Actions(driver).KeyUp(Keys.LeftShift).Build();
             releaseShift.Perform();
 
-            AssertThatFormEventsFiredAreExactly("focus keydown keydown keypress keyup keydown keypress keyup keyup"); 
+            AssertThatFormEventsFiredAreExactly("focus keydown keydown keypress keyup keydown keypress keyup keyup");
 
             Assert.AreEqual("AB", keysEventInput.GetAttribute("value"));
         }

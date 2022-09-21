@@ -14,9 +14,7 @@ namespace OpenQA.Selenium.Interactions
         [SetUp]
         public void Setup()
         {
-            // new Actions(driver).SendKeys(Keys.Null).Perform();
-            IActionExecutor actionExecutor = driver as IActionExecutor;
-            if (actionExecutor != null)
+            if (driver is IActionExecutor actionExecutor)
             {
                 actionExecutor.ResetInputState();
             }
@@ -25,9 +23,7 @@ namespace OpenQA.Selenium.Interactions
         [TearDown]
         public void ReleaseModifierKeys()
         {
-            // new Actions(driver).SendKeys(Keys.Null).Perform();
-            IActionExecutor actionExecutor = driver as IActionExecutor;
-            if (actionExecutor != null)
+            if (driver is IActionExecutor actionExecutor)
             {
                 actionExecutor.ResetInputState();
             }
@@ -304,7 +300,7 @@ namespace OpenQA.Selenium.Interactions
             Assert.AreEqual(originalTitle, driver.Title, "Should not have navigated away.");
 
             string originalHandle = driver.CurrentWindowHandle;
-            foreach(string newHandle in driver.WindowHandles)
+            foreach (string newHandle in driver.WindowHandles)
             {
                 if (newHandle != originalHandle)
                 {

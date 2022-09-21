@@ -134,17 +134,7 @@ namespace OpenQA.Selenium.Safari
                 }
                 catch (WebException ex)
                 {
-                    // Because the Firefox driver (incorrectly) does not allow quit on a
-                    // nonexistent session to succeed, this will throw a WebException,
-                    // which means we're reduced to using exception handling for flow control.
-                    // This situation is highly undesirable, and in fact is a horrible code
-                    // smell, but the implementation leaves us no choice. So we will check for
-                    // the known response code and content type header, just like we would for
-                    // the success case. Either way, a valid HTTP response instead of a socket
-                    // error would tell us that the HTTP server is responding to requests, which
-                    // is really what we want anyway.
-                    HttpWebResponse errorResponse = ex.Response as HttpWebResponse;
-                    if (errorResponse != null)
+                    if (ex.Response is HttpWebResponse errorResponse)
                     {
                         isInitialized = (errorResponse.StatusCode == HttpStatusCode.InternalServerError && errorResponse.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase)) || (errorResponse.StatusCode == HttpStatusCode.NotFound);
                     }

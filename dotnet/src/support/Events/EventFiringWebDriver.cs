@@ -770,8 +770,7 @@ namespace OpenQA.Selenium.Support.Events
             List<object> unwrappedArgs = new List<object>();
             foreach (object arg in args)
             {
-                IWrapsElement eventElementArg = arg as IWrapsElement;
-                if (eventElementArg != null)
+                if (arg is IWrapsElement eventElementArg)
                 {
                     unwrappedArgs.Add(eventElementArg.WrappedElement);
                 }
@@ -1707,9 +1706,7 @@ namespace OpenQA.Selenium.Support.Events
                 {
                     return false;
                 }
-
-                IWrapsElement otherWrapper = other as IWrapsElement;
-                if (otherWrapper != null)
+                if (other is IWrapsElement otherWrapper)
                 {
                     other = otherWrapper.WrappedElement;
                 }

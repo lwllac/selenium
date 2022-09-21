@@ -87,8 +87,7 @@ namespace OpenQA.Selenium
 
         public static bool IsNativeEventsEnabled(IWebDriver driver)
         {
-            IHasCapabilities hasCaps = driver as IHasCapabilities;
-            if (hasCaps != null)
+            if (driver is IHasCapabilities hasCaps)
             {
                 object cap = hasCaps.Capabilities.GetCapability(OpenQA.Selenium.CapabilityType.HasNativeEvents);
                 if (cap != null && cap is bool)

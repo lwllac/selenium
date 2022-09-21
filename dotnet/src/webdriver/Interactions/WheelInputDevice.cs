@@ -152,7 +152,7 @@ namespace OpenQA.Selenium.Interactions
             private CoordinateOrigin origin = CoordinateOrigin.Viewport;
 
             public WheelScrollInteraction(InputDevice sourceDevice, IWebElement target, CoordinateOrigin origin, int x, int y, int deltaX, int deltaY, TimeSpan duration)
-                :base(sourceDevice)
+                : base(sourceDevice)
             {
                 if (target != null)
                 {
@@ -211,8 +211,7 @@ namespace OpenQA.Selenium.Interactions
                 IWebDriverObjectReference elementReference = this.target as IWebDriverObjectReference;
                 if (elementReference == null)
                 {
-                    IWrapsElement elementWrapper = this.target as IWrapsElement;
-                    if (elementWrapper != null)
+                    if (this.target is IWrapsElement elementWrapper)
                     {
                         elementReference = elementWrapper.WrappedElement as IWebDriverObjectReference;
                     }

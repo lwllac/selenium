@@ -70,12 +70,11 @@ namespace OpenQA.Selenium.Remote
                     {
                         object raw = rawMap[CapabilityType.Platform];
                         string rawAsString = raw as string;
-                        Platform rawAsPlatform = raw as Platform;
                         if (rawAsString != null)
                         {
                             this.SetCapability(CapabilityType.Platform, Platform.FromString(rawAsString));
                         }
-                        else if (rawAsPlatform != null)
+                        else if (raw is Platform rawAsPlatform)
                         {
                             this.SetCapability(CapabilityType.Platform, rawAsPlatform);
                         }
@@ -254,11 +253,7 @@ namespace OpenQA.Selenium.Remote
         /// <param name="capabilityValue">The value for the capability.</param>
         public void SetCapability(string capability, object capabilityValue)
         {
-            // Handle the special case of Platform objects. These should
-            // be stored in the underlying dictionary as their protocol
-            // string representation.
-            Platform platformCapabilityValue = capabilityValue as Platform;
-            if (platformCapabilityValue != null)
+            if (capabilityValue is Platform platformCapabilityValue)
             {
                 this.capabilities[capability] = platformCapabilityValue.ProtocolPlatformType;
             }

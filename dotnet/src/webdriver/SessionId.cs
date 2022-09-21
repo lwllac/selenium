@@ -60,8 +60,7 @@ namespace OpenQA.Selenium
         public override bool Equals(object obj)
         {
             bool objectsAreEqual = false;
-            SessionId other = obj as SessionId;
-            if (other != null)
+            if (obj is SessionId other)
             {
                 objectsAreEqual = this.sessionOpaqueKey.Equals(other.sessionOpaqueKey);
             }

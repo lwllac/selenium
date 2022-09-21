@@ -130,8 +130,7 @@ namespace OpenQA.Selenium
 
         private void EnvironmentManagerDriverStarting(object sender, DriverStartingEventArgs e)
         {
-            InternetExplorerOptions ieOptions = e.Options as InternetExplorerOptions;
-            if (ieOptions != null)
+            if (e.Options is InternetExplorerOptions ieOptions)
             {
                 ieOptions.EnsureCleanSession = true;
             }

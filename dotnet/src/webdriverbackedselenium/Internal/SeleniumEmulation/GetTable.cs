@@ -1,4 +1,4 @@
-﻿// <copyright file="GetTable.cs" company="WebDriver Committers">
+// <copyright file="GetTable.cs" company="WebDriver Committers">
 // Licensed to the Software Freedom Conservancy (SFC) under one
 // or more contributor license agreements. See the NOTICE file
 // distributed with this work for additional information
@@ -73,8 +73,7 @@ namespace Selenium.Internal.SeleniumEmulation
                 "return table.rows[row].cells[col];";
 
             object returnValue = JavaScriptLibrary.ExecuteScript(driver, script, table, row, col);
-            IWebElement elementReturned = returnValue as IWebElement;
-            if (elementReturned != null)
+            if (returnValue is IWebElement elementReturned)
             {
                 tableString = elementReturned.Text.Trim();
             }

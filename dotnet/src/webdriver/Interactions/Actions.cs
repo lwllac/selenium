@@ -470,8 +470,7 @@ namespace OpenQA.Selenium.Interactions
             }
 
             ILocatable target = null;
-            IWrapsElement wrapper = element as IWrapsElement;
-            while (wrapper != null)
+            while (element is IWrapsElement wrapper)
             {
                 target = wrapper.WrappedElement as ILocatable;
                 wrapper = wrapper.WrappedElement as IWrapsElement;
@@ -495,8 +494,7 @@ namespace OpenQA.Selenium.Interactions
             T driverAsType = driver as T;
             if (driverAsType == null)
             {
-                IWrapsDriver wrapper = driver as IWrapsDriver;
-                while (wrapper != null)
+                while (driver is IWrapsDriver wrapper)
                 {
                     driverAsType = wrapper.WrappedDriver as T;
                     if (driverAsType != null)

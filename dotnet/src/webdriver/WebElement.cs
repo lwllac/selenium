@@ -664,9 +664,7 @@ namespace OpenQA.Selenium
             {
                 return false;
             }
-
-            IWrapsElement objAsWrapsElement = obj as IWrapsElement;
-            if (objAsWrapsElement != null)
+            if (obj is IWrapsElement objAsWrapsElement)
             {
                 other = objAsWrapsElement.WrappedElement;
             }
