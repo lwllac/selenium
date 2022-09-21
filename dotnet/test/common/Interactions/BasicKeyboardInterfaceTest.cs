@@ -118,7 +118,7 @@ namespace OpenQA.Selenium.Interactions
             IAction releaseShift = new Actions(driver).KeyUp(Keys.Shift).Build();
             releaseShift.Perform();
 
-            AssertThatFormEventsFiredAreExactly("focus keydown keydown keypress keyup keydown keypress keyup keyup"); 
+            AssertThatFormEventsFiredAreExactly("focus keydown keydown keypress keyup keydown keypress keyup keyup");
 
             Assert.AreEqual("AB", keysEventInput.GetAttribute("value"));
         }
@@ -135,7 +135,7 @@ namespace OpenQA.Selenium.Interactions
 
             AssertThatBodyEventsFiredAreExactly("keypress keypress");
             IWebElement formLoggingElement = driver.FindElement(By.Id("result"));
-            AssertThatFormEventsFiredAreExactly(string.Empty); 
+            AssertThatFormEventsFiredAreExactly(string.Empty);
         }
 
         [Test]
@@ -165,7 +165,7 @@ namespace OpenQA.Selenium.Interactions
 
         [Test]
         public void CanGenerateKeyboardShortcuts()
-        { 
+        {
             driver.Url = EnvironmentManager.Instance.UrlBuilder.WhereIs("keyboard_shortcut.html");
 
             IWebElement body = driver.FindElement(By.XPath("//body"));
@@ -301,7 +301,7 @@ namespace OpenQA.Selenium.Interactions
             IAction releaseShift = new Actions(driver).KeyUp(Keys.LeftShift).Build();
             releaseShift.Perform();
 
-            AssertThatFormEventsFiredAreExactly("focus keydown keydown keypress keyup keydown keypress keyup keyup"); 
+            AssertThatFormEventsFiredAreExactly("focus keydown keydown keypress keyup keydown keypress keyup keyup");
 
             Assert.AreEqual("AB", keysEventInput.GetAttribute("value"));
         }

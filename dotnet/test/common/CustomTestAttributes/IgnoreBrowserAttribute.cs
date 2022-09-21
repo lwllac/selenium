@@ -23,7 +23,7 @@ namespace OpenQA.Selenium
         {
             this.ignoreReason = reason;
         }
-        
+
         public Browser Value
         {
             get { return browser; }
@@ -58,7 +58,7 @@ namespace OpenQA.Selenium
 
                 foreach (Attribute attr in ignoreAttributes)
                 {
-                    if (attr is IgnoreBrowserAttribute browserToIgnoreAttr&& IgnoreTestForBrowser(browserToIgnoreAttr.Value))
+                    if (attr is IgnoreBrowserAttribute browserToIgnoreAttr && IgnoreTestForBrowser(browserToIgnoreAttr.Value))
                     {
                         string ignoreReason = "Ignoring browser " + EnvironmentManager.Instance.Browser.ToString() + ".";
                         if (!string.IsNullOrEmpty(browserToIgnoreAttr.Reason))

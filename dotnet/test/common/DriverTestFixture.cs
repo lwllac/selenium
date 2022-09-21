@@ -97,7 +97,7 @@ namespace OpenQA.Selenium
         {
             get
             {
-                if (driver is IHasCapabilities capabilitiesDriver&& capabilitiesDriver.Capabilities.HasCapability(CapabilityType.HasNativeEvents) && (bool)capabilitiesDriver.Capabilities.GetCapability(CapabilityType.HasNativeEvents))
+                if (driver is IHasCapabilities capabilitiesDriver && capabilitiesDriver.Capabilities.HasCapability(CapabilityType.HasNativeEvents) && (bool)capabilitiesDriver.Capabilities.GetCapability(CapabilityType.HasNativeEvents))
                 {
                     return true;
                 }

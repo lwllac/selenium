@@ -23,7 +23,7 @@ namespace OpenQA.Selenium
 
         public override void BeforeTest(ITest test)
         {
-            if (test.Fixture is DriverTestFixture fixtureInstance&& this.isCreatedBeforeTest)
+            if (test.Fixture is DriverTestFixture fixtureInstance && this.isCreatedBeforeTest)
             {
                 EnvironmentManager.Instance.CreateFreshDriver();
                 fixtureInstance.DriverInstance = EnvironmentManager.Instance.GetCurrentDriver();
@@ -33,7 +33,7 @@ namespace OpenQA.Selenium
 
         public override void AfterTest(ITest test)
         {
-            if (test.Fixture is DriverTestFixture fixtureInstance&& this.isCreatedAfterTest)
+            if (test.Fixture is DriverTestFixture fixtureInstance && this.isCreatedAfterTest)
             {
                 EnvironmentManager.Instance.CreateFreshDriver();
                 fixtureInstance.DriverInstance = EnvironmentManager.Instance.GetCurrentDriver();

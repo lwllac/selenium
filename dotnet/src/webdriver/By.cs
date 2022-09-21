@@ -369,7 +369,7 @@ namespace OpenQA.Selenium
         {
 
             // TODO(dawagner): This isn't ideal
-            return obj is By other&& this.description.Equals(other.description);
+            return obj is By other && this.description.Equals(other.description);
         }
 
         /// <summary>
